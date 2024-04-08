@@ -14,6 +14,7 @@ import os
 import dj_database_url
 from decouple import config
 import cloudinary
+import cloudinary.api
 from pathlib import Path
 
 
