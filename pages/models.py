@@ -8,9 +8,9 @@ class Team(models.Model):
     designation = models.CharField(max_length=255)
     photo = models.ImageField(upload_to='photos/%Y/%m/%d/')
 
-    linkedin_link = models.URLField(max_length=100, blank=True, null=True)
-    github_link = models.URLField(max_length=100, blank=True, null=True)
-    portfolio_link = models.URLField(max_length=100, blank=True, null=True)
+    linkedin_link = models.URLField(max_length=100)
+    github_link = models.URLField(max_length=100)
+    portfolio_link = models.URLField(max_length=100)
 
     created_date = models.DateTimeField(auto_now_add=True)
 
