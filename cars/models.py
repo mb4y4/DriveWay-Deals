@@ -81,6 +81,7 @@ class Car(models.Model):
         ('MER', 'Meru'),
         ('MIG', 'Migori'),
         ('MUR', 'Murang\'a'),
+        ('MSA', 'Mombasa'),
         ('NAR', 'Nairobi'),
         ('NAK', 'Nakuru'),
         ('NAN', 'Nandi'),
