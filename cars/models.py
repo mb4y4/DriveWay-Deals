@@ -4,55 +4,6 @@ from ckeditor.fields import RichTextField
 from multiselectfield import MultiSelectField
 
 # Create your models here.
-# class Car(models.Model):
-
-#     state_choice = (
-#         ('Nairobi', 'Nairobi'),
-#         ('Mombasa', 'Mombasa'),
-#         ('Kisumu', 'Kisumu'),
-#         ('Nakuru', 'Nakuru'),
-#         ('Eldoret', 'Eldoret'),
-#         ('Thika', 'Thika'),
-#         ('Malindi', 'Malindi'),
-#         ('Kitale', 'Kitale'),
-#         ('Garissa', 'Garissa'),
-#         ('Kakamega', 'Kakamega'),
-#         ('Nyeri', 'Nyeri'),
-#         ('Meru', 'Meru'),
-#         ('Lamu', 'Lamu'),
-#         ('Kericho', 'Kericho'),
-#         ('Machakos', 'Machakos'),
-#         ('Naivasha', 'Naivasha'),
-#         ('Embu', 'Embu'),
-#         ('Kisii', 'Kisii'),
-#         ('Bungoma', 'Bungoma'),
-#         ('Busia', 'Busia'),
-#         ('Nyahururu', 'Nyahururu'),
-#         ('Voi', 'Voi'),
-#         ('Nanyuki', 'Nanyuki'),
-#         ('Isiolo', 'Isiolo'),
-#         ('Mandera', 'Mandera'),
-#         ('Homa Bay', 'Homa Bay'),
-#         ('Lodwar', 'Lodwar'),
-#         ('Wajir', 'Wajir'),
-#         ('Migori', 'Migori'),
-#         ('Kitui', 'Kitui'),
-#         ('Marsabit', 'Marsabit'),
-#         ('Kilifi', 'Kilifi'),
-#         ('Bondo', 'Bondo'),
-#         ('Webuye', 'Webuye'),
-#         ('Kerugoya', 'Kerugoya'),
-#         ('Bomet', 'Bomet'),
-#         ('Siaya', 'Siaya'),
-#         ('Lamu', 'Lamu'),
-#         ('Maralal', 'Maralal'),
-#         ('Ruiru', 'Ruiru'),
-#         ('Lugulu', 'Lugulu'),
-#         ('Mbale', 'Mbale'),
-#         ('Taveta', 'Taveta'),
-#         ('Oyugis', 'Oyugis'),
-#     )
-
 class Car(models.Model):
 
     county_choices = (
