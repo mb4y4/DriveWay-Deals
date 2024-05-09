@@ -56,7 +56,7 @@ from multiselectfield import MultiSelectField
 class Car(models.Model):
 
     county_choices = (
-        ('MOM', 'Mombasa'),
+        ('MSA', 'Mombasa'),
         ('KWA', 'Kwale'),
         ('KIL', 'Kilifi'),
         ('TAN', 'Tana River'),
