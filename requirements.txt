@@ -14,6 +14,7 @@ gunicorn==20.0.4
 idna==2.10
 oauthlib==3.1.0
 pillow==10.2.0
+psycopg2==2.9.9
 psycopg2-binary==2.8.6
 python-decouple==3.8
 python3-openid==3.2.0
