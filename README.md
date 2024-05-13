@@ -20,10 +20,11 @@ Welcome to the CarDealer website, a full-stack web application developed as a ca
 
 ## Installation and Setup
 
-1. Clone the repository:
+1. **Clone the repository:**
 
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/mb4y4/DriveWay-Deals
+
 
 2. **Install dependencies:**
 
