@@ -91,7 +91,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'cardealer.wsgi.application'
+WSGI_APPLICATION = 'cardealer.wsgi:application'
 
 
 # Database
