@@ -122,6 +122,7 @@ cloudinary.config(
 
 # DATABASES = {'default': dj_database_url.config(default='postgres://postgres:######@localhost/cardealer_db')}
 
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -177,14 +178,20 @@ MESSAGE_TAGS = {
 
 SITE_ID = 1
 
-
+# from django.core.mail import send_mail
+# send_mail('Test Subject', 'Test message.', 'from@example.com', ['to@example.com'], fail_silently=False)
+   
 # Email sending
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = True
 
+EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'email_logs')
+
 
 # Whitenoise settings
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
