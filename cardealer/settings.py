@@ -27,14 +27,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-SECRET_KEY = config("SECRET_KEY")
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-# DEBUG = False
+DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
 
-ALLOWED_HOSTS = ['198.211.99.20', 'localhost', '127.0.0.1']
-# ALLOWED_HOSTS = ['*']
+# Application definition
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(' ')
 
 LOGIN_REDIRECT_URL = 'dashboard'
 
@@ -99,15 +98,11 @@ WSGI_APPLICATION = 'cardealer.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-
-# DATABASES = {
-#     'default': dj_database_url.parse(config('DB_URL'))
-# }
-
+database_url = os.environ.get("DATABASE_URL")
 DATABASES = {
-    'default': dj_database_url.parse('postgres://cardealer_db_2zfh_user:E84ITXVHzUzQ8Yj9QvWfSOKJcMn8as3H@dpg-cp6tpg6v3ddc73fq9jdg-a.oregon-postgres.render.com/cardealer_db_2zfh')
+    'default': dj_database_url.parse(database_url)
 }
-# postgres://cardealer_db_2zfh_user:E84ITXVHzUzQ8Yj9QvWfSOKJcMn8as3H@dpg-cp6tpg6v3ddc73fq9jdg-a.oregon-postgres.render.com/cardealer_db_2zfh
+
 
 #Cloudinary
 cloudinary.config(
