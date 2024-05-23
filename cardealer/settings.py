@@ -100,10 +100,14 @@ WSGI_APPLICATION = 'cardealer.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 
-DATABASES = {
-    'default': dj_database_url.parse(config('DB_URL'))
-}
+# DATABASES = {
+#     'default': dj_database_url.parse(config('DB_URL'))
+# }
 
+DATABASES = {
+    'default': dj_database_url.parse('postgres://cardealer_db_2zfh_user:E84ITXVHzUzQ8Yj9QvWfSOKJcMn8as3H@dpg-cp6tpg6v3ddc73fq9jdg-a.oregon-postgres.render.com/cardealer_db_2zfh')
+}
+# postgres://cardealer_db_2zfh_user:E84ITXVHzUzQ8Yj9QvWfSOKJcMn8as3H@dpg-cp6tpg6v3ddc73fq9jdg-a.oregon-postgres.render.com/cardealer_db_2zfh
 
 #Cloudinary
 cloudinary.config(
