@@ -1,11 +1,10 @@
 from django.db import models
 from datetime import datetime
-from ckeditor.fields import RichTextField
+from django_ckeditor_5.fields import CKEditor5Field
 from multiselectfield import MultiSelectField
+from django.core.validators import MaxLengthValidator
 
-# Create your models here.
 class Car(models.Model):
-
     county_choices = (
         ('MSA', 'Mombasa'),
         ('KWA', 'Kwale'),
@@ -56,10 +55,9 @@ class Car(models.Model):
         ('NBO', 'Nairobi City'),
     )
 
-
     year_choice = []
-    for r in range(2000, (datetime.now().year+1)):
-        year_choice.append((r,r))
+    for r in range(2000, (datetime.now().year + 1)):
+        year_choice.append((r, r))
 
     features_choices = (
         ('Cruise Control', 'Cruise Control'),
@@ -93,13 +91,13 @@ class Car(models.Model):
     year = models.IntegerField(('year'), choices=year_choice)
     condition = models.CharField(max_length=100)
     price = models.IntegerField()
-    description = RichTextField()
+    description = CKEditor5Field('Description', config_name='default')
     car_photo = models.ImageField(upload_to='photos/%Y/%m/%d/')
     car_photo_2 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
     car_photo_3 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
     car_photo_4 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
     
-    features = MultiSelectField(choices=features_choices)
+    features = MultiSelectField(choices=features_choices, max_length=200, validators=[MaxLengthValidator(200)])
     body_style = models.CharField(max_length=100)
     engine = models.CharField(max_length=100)
     transmission = models.CharField(max_length=100)

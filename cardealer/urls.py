@@ -9,9 +9,9 @@ urlpatterns = [
     path('', include('pages.urls')),
     path('cars/', include('cars.urls')),
     path('accounts/', include('accounts.urls')),
-    path('socialaccounts/', include('allauth.urls')),
+    # path('socialaccounts/', include('allauth.urls')),
     path('contacts/', include('contacts.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-handler404 = 'contacts.views.error_404'
-handler500 = 'contacts.views.error_500'
+# handler404 = 'contacts.views.error_404'
+# handler500 = 'contacts.views.error_500'

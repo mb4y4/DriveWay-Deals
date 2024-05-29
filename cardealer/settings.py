@@ -30,10 +30,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
+# DEBUG = os.environ.get('DEBUG', 'True').lower() == 'true'
+DEBUG = True
 
 # Application definition
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(' ')
+# ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(' ')
+ALLOWED_HOSTS = ['*']
 
 LOGIN_REDIRECT_URL = 'dashboard'
 
@@ -51,16 +53,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'ckeditor',
+    'django_ckeditor_5',
     'django.contrib.humanize',
     'django.contrib.sites',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
+    # 'allauth',
+    # 'allauth.account',
+    # 'allauth.socialaccount'
 
     # Providers
-    'allauth.socialaccount.providers.facebook',
-    'allauth.socialaccount.providers.google',
+    # 'allauth.socialaccount.providers.facebook',
+    # 'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [
@@ -72,6 +74,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'cardealer.urls'
@@ -79,7 +82,7 @@ ROOT_URLCONF = 'cardealer.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [Path(BASE_DIR,"templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -87,6 +90,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'allauth.account.context_processors.account',  
+                'allauth.socialaccount.context_processors.socialaccount',  
             ],
         },
     },
@@ -98,21 +103,8 @@ WSGI_APPLICATION = 'cardealer.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-database_url = os.environ.get("DATABASE_URL")
-DATABASES = {
-    'default': dj_database_url.parse(database_url)
-}
-
-
-#Cloudinary
-cloudinary.config(
-    cloud_name = config('CD_NAME'),
-    api_key= config('CD_API'),
-    api_secret=config('CD_SECRET'),
-    secure = config('CD_SECURE')
-)
-
-# DATABASES = {'default': dj_database_url.config(default='postgres://postgres:######@localhost/cardealer_db')}
+DATABASES = {}
+DATABASES["default"] = dj_database_url.parse("postgres://cardealer_db_ybj7_user:93wFq6NX3feRmsNjRansKZ7Ks23rIRPz@dpg-cpbeqjnsc6pc73a7f5lg-a.oregon-postgres.render.com/cardealer_db_ybj7")
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -138,16 +130,6 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-# LANGUAGE_CODE = 'en-us'
-
-# TIME_ZONE = 'UTC'
-
-# USE_I18N = True
-
-# USE_L10N = True
-
-# USE_TZ = False
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -160,10 +142,13 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'cardealer/static'),
-]
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'cardealer/static'),
+# ]
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'cardealer', 'static'),
+# ]
 
 # Media settings
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -194,3 +179,11 @@ EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'email_logs')
 # Whitenoise settings
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+
+CKEDITOR_5_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'height': 300,
+        'width': '100%',
+    },
+}
