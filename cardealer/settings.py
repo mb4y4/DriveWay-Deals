@@ -31,11 +31,11 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'True').lower() == 'true'
-# DEBUG = True
+
 
 # Application definition
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(' ')
-# ALLOWED_HOSTS = ['*']
+
 
 LOGIN_REDIRECT_URL = 'dashboard'
 
@@ -105,8 +105,6 @@ database_url = os.environ.get("DATABASE_URL")
 
 DATABASES = {}
 DATABASES["default"] = dj_database_url.parse(database_url)
-# DATABASES = {}
-# DATABASES["default"] = dj_database_url.parse("postgres://cardealer_db_ybj7_user:93wFq6NX3feRmsNjRansKZ7Ks23rIRPz@dpg-cpbeqjnsc6pc73a7f5lg-a.oregon-postgres.render.com/cardealer_db_ybj7")
 
 
 
