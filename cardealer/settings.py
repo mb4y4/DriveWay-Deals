@@ -30,12 +30,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = os.environ.get('DEBUG', 'True').lower() == 'true'
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', 'True').lower() == 'true'
+# DEBUG = True
 
 # Application definition
-# ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(' ')
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(' ')
+# ALLOWED_HOSTS = ['*']
 
 LOGIN_REDIRECT_URL = 'dashboard'
 
@@ -56,13 +56,6 @@ INSTALLED_APPS = [
     'django_ckeditor_5',
     'django.contrib.humanize',
     'django.contrib.sites',
-    # 'allauth',
-    # 'allauth.account',
-    # 'allauth.socialaccount',
-
-    # Providers
-    # 'allauth.socialaccount.providers.facebook',
-    # 'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [
@@ -74,7 +67,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
-    # 'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'cardealer.urls'
@@ -94,14 +86,12 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 
                 'django.template.context_processors.request',
-                # 'allauth.account.context_processors.account',
-                # 'allauth.socialaccount.context_processors.socialaccount',  
             ],
         },
     },
 ]
 
-# print("Allauth context processors are being loaded.")
+
 
 
 
@@ -111,10 +101,14 @@ WSGI_APPLICATION = 'cardealer.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {}
-DATABASES["default"] = dj_database_url.parse("postgres://cardealer_db_ybj7_user:93wFq6NX3feRmsNjRansKZ7Ks23rIRPz@dpg-cpbeqjnsc6pc73a7f5lg-a.oregon-postgres.render.com/cardealer_db_ybj7")
+database_url = os.environ.get("DATABASE_URL")
 
-# 
+DATABASES = {}
+DATABASES["default"] = dj_database_url.parse(database_url)
+# DATABASES = {}
+# DATABASES["default"] = dj_database_url.parse("postgres://cardealer_db_ybj7_user:93wFq6NX3feRmsNjRansKZ7Ks23rIRPz@dpg-cpbeqjnsc6pc73a7f5lg-a.oregon-postgres.render.com/cardealer_db_ybj7")
+
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -154,12 +148,6 @@ USE_TZ = False
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-
-# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, "static"),
-# ]
 
 
 
