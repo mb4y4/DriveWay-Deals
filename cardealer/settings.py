@@ -58,7 +58,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     # 'allauth',
     # 'allauth.account',
-    # 'allauth.socialaccount'
+    # 'allauth.socialaccount',
 
     # Providers
     # 'allauth.socialaccount.providers.facebook',
@@ -74,28 +74,36 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
-    'allauth.account.middleware.AccountMiddleware',
+    # 'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'cardealer.urls'
 
+
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [Path(BASE_DIR,"templates")],
+        'DIRS': [Path(BASE_DIR, "templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
-                'django.template.context_processors.request',
+                
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'allauth.account.context_processors.account',  
-                'allauth.socialaccount.context_processors.socialaccount',  
+                
+                'django.template.context_processors.request',
+                # 'allauth.account.context_processors.account',
+                # 'allauth.socialaccount.context_processors.socialaccount',  
             ],
         },
     },
 ]
+
+# print("Allauth context processors are being loaded.")
+
+
 
 WSGI_APPLICATION = 'cardealer.wsgi.application'
 
@@ -105,6 +113,8 @@ WSGI_APPLICATION = 'cardealer.wsgi.application'
 
 DATABASES = {}
 DATABASES["default"] = dj_database_url.parse("postgres://cardealer_db_ybj7_user:93wFq6NX3feRmsNjRansKZ7Ks23rIRPz@dpg-cpbeqjnsc6pc73a7f5lg-a.oregon-postgres.render.com/cardealer_db_ybj7")
+
+# 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -161,6 +171,8 @@ MESSAGE_TAGS = {
 }
 
 SITE_ID = 1
+
+
 
 # from django.core.mail import send_mail
 # send_mail('Test Subject', 'Test message.', 'from@example.com', ['to@example.com'], fail_silently=False)
