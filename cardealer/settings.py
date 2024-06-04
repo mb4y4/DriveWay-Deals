@@ -16,10 +16,12 @@ from decouple import config
 import cloudinary
 import cloudinary.api
 from pathlib import Path
+from dotenv import load_dotenv
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+#BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -36,6 +38,7 @@ DEBUG = os.environ.get('DEBUG', 'True').lower() == 'true'
 # Application definition
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(' ')
 
+ALLOWED_HOSTS = ['*']
 
 LOGIN_REDIRECT_URL = 'dashboard'
 
@@ -106,6 +109,15 @@ database_url = os.environ.get("DATABASE_URL")
 DATABASES = {}
 DATABASES["default"] = dj_database_url.parse(database_url)
 
+# Load environment variables from .env file
+load_dotenv()
+
+# Fetch the database URL from the environment variables
+DATABASE_URL = os.getenv('DATABASE_URL')
+
+# Parse the database URL
+DATABASES = {}
+DATABASES["default"] = dj_database_url.parse(DATABASE_URL)
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -143,10 +155,12 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+# STATIC_URL = '/static/'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-
+STATICFILES_DIRS = [BASE_DIR / "static"]
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
 # Media settings
@@ -178,7 +192,7 @@ EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'email_logs')
 
 
 # Whitenoise settings
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 CKEDITOR_5_CONFIGS = {

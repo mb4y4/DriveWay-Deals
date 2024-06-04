@@ -228,7 +228,12 @@ $(function () {
     $( function() {
         // Add background image
         //$.backstretch('../img/nature.jpg');
-        var endDate = "December  27, 2019 15:03:25";
+        //var endDate = "December  27, 2024 15:03:25";
+
+        var endDate = new Date();
+        endDate.setMonth(endDate.getMonth() + 1);
+        endDate = endDate.toISOString().slice(0, 19).replace("T", " ");
+
         $('.countdown.simple').countdown({ date: endDate });
         $('.countdown.styled').countdown({
             date: endDate,
