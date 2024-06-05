@@ -38,7 +38,7 @@ DEBUG = os.environ.get('DEBUG', 'True').lower() == 'true'
 # Application definition
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(' ')
 
-# ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*']
 
 LOGIN_REDIRECT_URL = 'dashboard'
 
