@@ -38,7 +38,7 @@ DEBUG = os.environ.get('DEBUG', 'True').lower() == 'true'
 # Application definition
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(' ')
 
-ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['*']
 
 LOGIN_REDIRECT_URL = 'dashboard'
 
@@ -109,15 +109,15 @@ database_url = os.environ.get("DATABASE_URL")
 DATABASES = {}
 DATABASES["default"] = dj_database_url.parse(database_url)
 
-# Load environment variables from .env file
-load_dotenv()
+# # Load environment variables from .env file
+# load_dotenv()
 
-# Fetch the database URL from the environment variables
-DATABASE_URL = os.getenv('DATABASE_URL')
+# # Fetch the database URL from the environment variables
+# DATABASE_URL = os.getenv('DATABASE_URL')
 
-# Parse the database URL
-DATABASES = {}
-DATABASES["default"] = dj_database_url.parse(DATABASE_URL)
+# # Parse the database URL
+# DATABASES = {}
+# DATABASES["default"] = dj_database_url.parse(DATABASE_URL)
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
