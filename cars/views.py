@@ -1,8 +1,10 @@
 from django.shortcuts import render, get_object_or_404
+from django.http import JsonResponse
+from django.core.paginator import Paginator
 from .models import Car
-from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.views import View
 
-# Create your views here.
+# View for listing cars with pagination
 def cars(request):
     cars = Car.objects.order_by('-created_date')
     paginator = Paginator(cars, 4)
@@ -23,6 +25,7 @@ def cars(request):
     }
     return render(request, 'cars/cars.html', data)
 
+# View for displaying details of a single car
 def car_detail(request, id):
     single_car = get_object_or_404(Car, pk=id)
 
@@ -31,7 +34,7 @@ def car_detail(request, id):
     }
     return render(request, 'cars/car_detail.html', data)
 
-
+# View for searching cars based on various criteria
 def search(request):
     cars = Car.objects.order_by('-created_date')
 
@@ -81,3 +84,24 @@ def search(request):
         'transmission_search': transmission_search,
     }
     return render(request, 'cars/search.html', data)
+
+# View for handling CKEditor file uploads
+class CKEditorUploadView(View):
+    def post(self, request, *args, **kwargs):
+        # Handle file upload here and return JSON response as expected by CKEditor
+        uploaded_file = request.FILES.get('upload')
+        
+        # Example: Save the file and return its URL
+        # Replace this with your actual file handling logic
+        if uploaded_file:
+            with open('media/uploads/' + uploaded_file.name, 'wb+') as destination:
+                for chunk in uploaded_file.chunks():
+                    destination.write(chunk)
+            uploaded_file_url = '/media/uploads/' + uploaded_file.name  # Example URL
+        else:
+            uploaded_file_url = None
+
+        return JsonResponse({
+            'uploaded': True if uploaded_file_url else False,
+            'url': uploaded_file_url  # Return the URL of the uploaded file
+        })

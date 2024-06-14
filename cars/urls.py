@@ -5,4 +5,5 @@ urlpatterns = [
     path('', views.cars, name='cars'),
     path('<int:id>', views.car_detail, name='car_detail'),
     path('search', views.search, name='search'),
+    path('ckeditor/upload/', views.CKEditorUploadView.as_view(), name='ck_editor_5_upload_file'),
 ]

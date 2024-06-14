@@ -1,6 +1,8 @@
 from django.contrib import admin
-from .models import Car
+from django.db import models
 from django.utils.html import format_html
+from django_ckeditor_5.widgets import CKEditor5Widget  # Import CKEditor5Widget
+from .models import Car
 
 # Register your models here.
 
@@ -14,4 +16,9 @@ class CarAdmin(admin.ModelAdmin):
     list_editable = ('is_featured',)
     search_fields = ('id', 'car_title', 'city', 'model', 'body_style','fuel_type')
     list_filter = ('city', 'model', 'body_style', 'fuel_type')
+    
+    # Define formfield_overrides to use CKEditor5Widget for TextField (description)
+    formfield_overrides = {
+        models.TextField: {'widget': CKEditor5Widget},
+    }
 admin.site.register(Car, CarAdmin)
