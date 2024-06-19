@@ -109,8 +109,6 @@ database_url = os.environ.get("DATABASE_URL")
 DATABASES = {}
 DATABASES["default"] = dj_database_url.parse(database_url)
 
-#postgres://cardealer_db_sfgt_user:MF0FrfkVfuu81taqjqFTULCS77RIjpnk@dpg-cppe21dds78s73e6uag0-a.oregon-postgres.render.com/cardealer_db_sfgt
-
 # # Load environment variables from .env file
 # load_dotenv()
 
