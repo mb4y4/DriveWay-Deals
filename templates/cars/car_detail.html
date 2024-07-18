@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %} | {{single_car.car_title}} {% endblock %}
+{% block title %} | {{ single_car.car_title }} {% endblock %}
 {% block content %}
 
 {% load static %}
@@ -10,10 +10,10 @@
 <div class="sub-banner overview-bgi">
     <div class="container breadcrumb-area">
         <div class="breadcrumb-areas">
-            <h1>{{single_car.car_title}}</h1>
+            <h1>{{ single_car.car_title }}</h1>
             <ul class="breadcrumbs">
                 <li><a href="index.html">Home</a></li>
-                <li class="active">{{single_car.car_title}}</li>
+                <li class="active">{{ single_car.car_title }}</li>
             </ul>
         </div>
     </div>
@@ -30,82 +30,109 @@
                     <div class="heading-car clearfix">
                       {% include 'includes/messages.html' %}
                         <div class="pull-left">
-                            <h3>{{single_car.car_title}}</h3>
+                            <h3>{{ single_car.car_title }}</h3>
                             <h6>
-                                <i class="flaticon-pin"></i>{{single_car.state}}, {{single_car.city}}
+                                <i class="flaticon-pin"></i>{{ single_car.state }}, {{ single_car.city }}
                             </h6>
                         </div>
                         <div class="pull-right">
-                            <h3><span>Ksh. {{single_car.price | intcomma}}</span></h3>
+                            <h3><span>Ksh. {{ single_car.price | intcomma }}</span></h3>
                         </div>
                     </div>
-                    <div id="carDetailsSlider" class="carousel car-details-sliders slide mb-40">
+                    <!-- Car image slider start -->
+                    <div id="carDetailsSlider" class="carousel car-details-sliders slide mb-40" data-ride="carousel">
                         <!-- main slider carousel items -->
                         <div class="carousel-inner">
-                            <div class="active item carousel-item" data-slide-number="0">
-                                <img src="{{single_car.car_photo.url}}" class="img-fluid" alt="slider-car">
+                            <div class="carousel-item active" data-slide-number="0">
+                                <img src="{{ single_car.car_photo.url }}" class="d-block w-100" alt="Car Photo">
                             </div>
                             {% if single_car.car_photo_1 %}
-                            <div class="item carousel-item" data-slide-number="1">
-                                <img src="{{single_car.car_photo_1.url}}" class="img-fluid" alt="slider-car">
-                            </div>
+                                <div class="carousel-item" data-slide-number="1">
+                                    <img src="{{ single_car.car_photo_1.url }}" class="d-block w-100" alt="Car Photo">
+                                </div>
                             {% endif %}
                             {% if single_car.car_photo_2 %}
-                            <div class="item carousel-item" data-slide-number="2">
-                                <img src="{{single_car.car_photo_2.url}}" class="img-fluid" alt="slider-car">
-                            </div>
+                                <div class="carousel-item" data-slide-number="2">
+                                    <img src="{{ single_car.car_photo_2.url }}" class="d-block w-100" alt="Car Photo">
+                                </div>
                             {% endif %}
                             {% if single_car.car_photo_3 %}
-                            <div class="item carousel-item" data-slide-number="4">
-                                <img src="{{single_car.car_photo_3.url}}" class="img-fluid" alt="slider-car">
-                            </div>
+                                <div class="carousel-item" data-slide-number="3">
+                                    <img src="{{ single_car.car_photo_3.url }}" class="d-block w-100" alt="Car Photo">
+                                </div>
                             {% endif %}
                             {% if single_car.car_photo_4 %}
-                            <div class="item carousel-item" data-slide-number="5">
-                                <img src="{{single_car.car_photo_4.url}}" class="img-fluid" alt="slider-car">
-                            </div>
+                                <div class="carousel-item" data-slide-number="4">
+                                    <img src="{{ single_car.car_photo_4.url }}" class="d-block w-100" alt="Car Photo">
+                                </div>
                             {% endif %}
                         </div>
                         <!-- main slider carousel nav controls -->
-                        <div class="carousel-indicators-section clearfix">
-                            <ul class="carousel-indicators car-properties list-inline nav nav-justified">
-                                <li class="list-inline-item active">
-                                    <a id="carousel-selector-0" class="selected" data-slide-to="0" data-target="#carDetailsSlider">
-                                        <img src="{{single_car.car_photo.url}}" class="img-fluid" alt="small-car">
-                                    </a>
-                                </li>
-                                {% if single_car.car_photo_1 %}
-                                <li class="list-inline-item">
-                                    <a id="carousel-selector-1" data-slide-to="1" data-target="#carDetailsSlider">
-                                        <img src="{{single_car.car_photo_1.url}}" class="img-fluid" alt="small-car">
-                                    </a>
-                                </li>
-                                {% endif %}
-                                {% if single_car.car_photo_2 %}
-                                <li class="list-inline-item">
-                                    <a id="carousel-selector-2" data-slide-to="2" data-target="#carDetailsSlider">
-                                        <img src="{{single_car.car_photo_2.url}}" class="img-fluid" alt="small-car">
-                                    </a>
-                                </li>
-                                {% endif %}
-                                {% if single_car.car_photo_3 %}
-                                <li class="list-inline-item">
-                                    <a id="carousel-selector-3" data-slide-to="3" data-target="#carDetailsSlider">
-                                        <img src="{{single_car.car_photo_3.url}}" class="img-fluid" alt="small-car">
-                                    </a>
-                                </li>
-                                {% endif %}
-                                {% if single_car.car_photo_4 %}
-                                <li class="list-inline-item">
-                                    <a id="carousel-selector-4" data-slide-to="4" data-target="#carDetailsSlider">
-                                        <img src="{{single_car.car_photo_4.url}}" class="img-fluid" alt="small-car">
-                                    </a>
-                                </li>
-                                {% endif %}
-                            </ul>
+                        <a class="carousel-control-prev" href="#carDetailsSlider" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carDetailsSlider" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                    <!-- Car image slider end -->
+
+                    <!-- Thumbnails navigation start -->
+                    <div class="thumbnail-carousel">
+                        <div id="thumbCarousel" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <a href="#carDetailsSlider" class="thumb" data-slide-to="0">
+                                                <img src="{{ single_car.car_photo.url }}" class="img-fluid" alt="Thumbnail">
+                                            </a>
+                                        </div>
+                                        {% if single_car.car_photo_1 %}
+                                            <div class="col-3">
+                                                <a href="#carDetailsSlider" class="thumb" data-slide-to="1">
+                                                    <img src="{{ single_car.car_photo_1.url }}" class="img-fluid" alt="Thumbnail">
+                                                </a>
+                                            </div>
+                                        {% endif %}
+                                        {% if single_car.car_photo_2 %}
+                                            <div class="col-3">
+                                                <a href="#carDetailsSlider" class="thumb" data-slide-to="2">
+                                                    <img src="{{ single_car.car_photo_2.url }}" class="img-fluid" alt="Thumbnail">
+                                                </a>
+                                            </div>
+                                        {% endif %}
+                                        {% if single_car.car_photo_3 %}
+                                            <div class="col-3">
+                                                <a href="#carDetailsSlider" class="thumb" data-slide-to="3">
+                                                    <img src="{{ single_car.car_photo_3.url }}" class="img-fluid" alt="Thumbnail">
+                                                </a>
+                                            </div>
+                                        {% endif %}
+                                        {% if single_car.car_photo_4 %}
+                                            <div class="col-3">
+                                                <a href="#carDetailsSlider" class="thumb" data-slide-to="4">
+                                                    <img src="{{ single_car.car_photo_4.url }}" class="img-fluid" alt="Thumbnail">
+                                                </a>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <a class="carousel-control-prev" href="#thumbCarousel" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#thumbCarousel" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
                         </div>
                     </div>
-					
+                    <!-- Thumbnails navigation end -->
+
                     <!-- Tabbing box start -->
                     <div class="tabbing tabbing-box mb-40">
                         <ul class="nav nav-tabs" id="carTab" role="tablist">
@@ -119,12 +146,8 @@
                         <div class="tab-content" id="carTabContent">
                             <div class="tab-pane fade active show" id="one" role="tabpanel" aria-labelledby="one-tab">
                                 <div class="car-description mb-50">
-                                    <h3 class="heading-2">
-                                        Description
-                                    </h3>
-                                    <p>
-                                      {{single_car.description | safe }}
-                                    </p>
+                                    <h3 class="heading-2">Description</h3>
+                                    <p>{{ single_car.description | safe }}</p>
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="two" role="tabpanel" aria-labelledby="two-tab">
@@ -133,22 +156,16 @@
                                     <div class="row">
                                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                             <ul>
-                                                <li>
-                                                    {{single_car.features}}
-                                                </li>
-
+                                                <li>{{ single_car.features }}</li>
                                             </ul>
                                         </div>
-
-
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
+                    <!-- Tabbing box end -->
 
-					
                 </div>
             </div>
             <div class="col-lg-4 col-md-12">
@@ -156,161 +173,111 @@
                     <!-- Advanced search start -->
                     <div class="widget advanced-search d-none-992">
                         <button class="btn btn-danger bomd btn-block btn-lg" data-toggle="modal" data-target="#inquiryModal">Send a Message</button>
-
-
                         <br>
                         <h3 class="sidebar-title">Car Specs</h3>
                         <ul>
-                            <li>
-                                <span><b>Color:</b> </span>{{single_car.color}}
-                            </li>
-                            <li>
-                                <span><b>Model:</b> </span>{{single_car.model}}
-                            </li>
-                            <li>
-                                <span><b>Year:</b> </span>{{single_car.year}}
-                            </li>
-                            <li>
-                                <span><b>Condition:</b> </span>{{single_car.condition}}
-                            </li>
-                            <li>
-                                <span><b>Body Style:</b> </span>{{single_car.body_style}}
-                            </li>
-                            <li>
-                                <span><b>Engine:</b> </span>{{single_car.engine}}
-                            </li>
-                            <li>
-                                <span><b>Transmission:</b> </span>{{single_car.transmission}}
-                            </li>
-                            <li>
-                                <span><b>Interior:</b> </span>{{single_car.interior}}
-                            </li>
-                            <li>
-                                <span><b>Miles:</b> </span>{{single_car.miles | intcomma}} miles
-                            </li>
-                            <li>
-                                <span><b>Doors:</b> </span>{{single_car.doors}}
-                            </li>
-                            <li>
-                                <span><b>Passengers:</b> </span>{{single_car.passengers}}
-                            </li>
-                            <li>
-                                <span><b>VID No.:</b> </span>{{single_car.vin_no}}
-                            </li>
-                            <li>
-                                <span><b>Mileage:</b> </span>{{single_car.milage}}
-                            </li>
-
-                            <li>
-                                <span><b>Fuel Type:</b> </span>{{single_car.fuel_type}}
-                            </li>
-                            <li>
-                                <span><b>Owners:</b> </span>{{single_car.no_of_owners}}
-                            </li>
+                            <li><span><b>Color:</b></span> {{ single_car.color }}</li>
+                            <li><span><b>Year:</b></span> {{ single_car.year }}</li>
+                            <li><span><b>Condition:</b></span> {{ single_car.condition }}</li>
+                            <li><span><b>Body Style:</b></span> {{ single_car.body_style }}</li>
+                            <li><span><b>Engine:</b></span> {{ single_car.engine }}</li>
+                            <li><span><b>Transmission:</b></span> {{ single_car.transmission }}</li>
+                            <li><span><b>Interior:</b></span> {{ single_car.interior }}</li>
+                            <li><span><b>Miles:</b></span> {{ single_car.miles | intcomma }} miles</li>
+                            <li><span><b>Doors:</b></span> {{ single_car.doors }}</li>
+                            <li><span><b>Passengers:</b></span> {{ single_car.passengers }}</li>
+                            <li><span><b>VIN No.:</b></span> {{ single_car.vin_no }}</li>                           
+                            <li><span><b>Fuel Type:</b></span> {{ single_car.fuel_type }}</li>
+                            <li><span><b>Owners:</b></span> {{ single_car.no_of_owners }}</li>
                         </ul>
                     </div>
-
-                    <!-- Inquiry Modal -->
-                    <div class="modal fade" id="inquiryModal" role="dialog">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-                          <div class="contact-dealer modal-header">
-                            <!-- <h5 class="modal-title" id="inquiryModalLabel">Contact Dealer</h5> -->
-                            <center><img src="{% static 'img/logos/cardealerLogo.png' %}"></center>
-                            <button type="button" class="close" data-dismiss="modal">
-                              <span>&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body">
-                            <form action="{% url 'inquiry' %}" method="POST">
-                              {% csrf_token %}
-
-                              {% if user.is_authenticated %}
-                                <input type="hidden" name="user_id" value="{{user.id}}">
-                              {% else %}
-                                <input type="hidden" name="user_id" value="0">
-                              {% endif %}
-
-                              <input type="hidden" name="car_id" value="{{single_car.id}}">
-                                <div class="form-group">
-                                  <label for="name" class="col-form-label">Hello, My Name is</label>
-                                  <div class="row">
-                                    <div class="col">
-                                      <input type="text" name="first_name" class="form-control" placeholder="First Name"
-                                      {% if user.is_authenticated %} value="{{user.first_name}}"  {% endif %} required>
-                                    </div>
-                                    <div class="col">
-                                      <input type="text" name="last_name" class="form-control" placeholder="Last Name"
-                                       {% if user.is_authenticated %} value="{{user.last_name}}"  {% endif %} required>
-                                    </div>
-                                  </div>
+                     <!-- Inquiry Modal -->
+                     <div class="modal fade" id="inquiryModal" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="contact-dealer modal-header">
+                                    <center><img src="{% static 'img/logos/cardealerLogo.png' %}"></center>
+                                    <button type="button" class="close" data-dismiss="modal">
+                                        <span>&times;</span>
+                                    </button>
                                 </div>
-                                  <div class="form-group">
-                                      <select class="form-control" id="sel1" name="customer_need">
-                                        <option value="I'm interested in this">I'm interested in this</option>
-                                        <option value="I'd like to know your best price for this">I'd like to know your best price for this</option>
-                                        <option value="I'd like to Schedule a Test Drive">I'd like to Schedule a Test Drive</option>
-                                        <option value="Check home delivery options">Check home delivery options</option>
-                                        <option value="I'd like a history report for this">I'd like a history report for this</option>
-                                        <option value="Discuss Financing">Discuss Financing</option>
-                                        <option value="Others [Mention Below]">Others [Mention Below]</option>
-                                      </select>
-                                    </div>
-									
-                                <div class="form-group">
-                                  <input type="text" name="car_title" class="form-control" value="{{ single_car.car_title }}" readonly>
+                                <div class="modal-body">
+                                    <form action="{% url 'inquiry' %}" method="POST">
+                                        {% csrf_token %}
+                                        {% if user.is_authenticated %}
+                                            <input type="hidden" name="user_id" value="{{ user.id }}">
+                                        {% else %}
+                                            <input type="hidden" name="user_id" value="0">
+                                        {% endif %}
+                                        <input type="hidden" name="car_id" value="{{ single_car.id }}">
+                                        <div class="form-group">
+                                            <label for="name" class="col-form-label">Hello, My Name is</label>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <input type="text" name="first_name" class="form-control" placeholder="First Name" {% if user.is_authenticated %} value="{{ user.first_name }}" {% endif %} required>
+                                                </div>
+                                                <div class="col">
+                                                    <input type="text" name="last_name" class="form-control" placeholder="Last Name" {% if user.is_authenticated %} value="{{ user.last_name }}" {% endif %} required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <select class="form-control" id="customer_need" name="customer_need">
+                                                <option value="I'm interested in this">I'm interested in this</option>
+                                                <option value="I'd like to know your best price for this">I'd like to know your best price for this</option>
+                                                <option value="I'd like to Schedule a Test Drive">I'd like to Schedule a Test Drive</option>
+                                                <option value="Check home delivery options">Check home delivery options</option>
+                                                <option value="I'd like a history report for this">I'd like a history report for this</option>
+                                                <option value="Discuss Financing">Discuss Financing</option>
+                                                <option value="Others [Mention Below]">Others [Mention Below]</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" name="car_title" class="form-control" value="{{ single_car.car_title }}" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="name" class="col-form-label">I live in</label>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <input type="text" name="city" class="form-control" placeholder="City" required>
+                                                </div>
+                                                <div class="col">
+                                                    <input type="text" name="state" class="form-control" placeholder="State" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <label for="email" class="col-form-label">You can reach me by email at</label>
+                                                    <input type="email" name="email" class="form-control" placeholder="Email Address" {% if user.is_authenticated %} value="{{ user.email }}" {% endif %} required>
+                                                </div>
+                                                <div class="col">
+                                                    <label for="phone" class="col-form-label">or by cell at</label>
+                                                    <input type="text" name="phone" placeholder="Phone Number (optional)" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="message" class="col-form-label">Additional Messages</label>
+                                            <textarea name="message" class="form-control" placeholder="Enter your message here (optional)"></textarea>
+                                        </div>
+                                        <hr>
+                                        <input type="submit" value="Submit" class="btn btn-block btn-dark">
+                                    </form>
                                 </div>
-
-                                <div class="form-group">
-                                  <label for="name" class="col-form-label">I live in</label>
-                                  <div class="row">
-                                    <div class="col">
-                                      <input type="text" name="city" class="form-control" placeholder="City" required>
-                                    </div>
-                                    <div class="col">
-                                      <input type="text" name="state" class="form-control" placeholder="State" required>
-                                    </div>
-                                  </div>
-                                </div>
-
-                                <div class="form-group">
-                                  <div class="row">
-                                    <div class="col">
-                                        <label for="name" class="col-form-label">You can reach me by email at</label>
-                                      <input type="email" name="email" class="form-control" placeholder="Email Address"
-                                       {% if user.is_authenticated %} value="{{user.email}}"  {% endif %} required>
-                                    </div>
-                                    <div class="col">
-                                        <label for="phone" class="col-form-label">or by cell at</label>
-                                      <input type="text" name="phone" placeholder="Phone Number (optional)" class="form-control">
-                                    </div>
-                                  </div>
-                                </div>
-
-                                <div class="form-group">
-                                  <label for="message" class="col-form-label">Additional Messages</label>
-                                  <textarea name="message" class="form-control" placeholder="Enter your message here (optional)"></textarea>
-                                </div>
-                                <hr>
-                                <input type="submit" value="Submit" class="btn btn-block btn-dark">
-                            </form>
-                          </div>
+                            </div>
                         </div>
-                      </div>
                     </div>
+                    <!-- Inquiry Modal end -->
+
                     <!-- Question start -->
                     <div class="widget question">
                         <h5 class="sidebar-title">Got Any Question?</h5>
                         <ul class="contact-info">
-                            <li>
-                                <i class="flaticon-pin"></i>47 Olewangai Close, Nairobi
-                            </li>
-                            <li>
-                                <i class="flaticon-mail"></i><a href="mailto:info@carweb.cm">info@carweb.cm</a>
-                            </li>
-                            <li>
-                                <i class="flaticon-phone"></i><a href="tel:+0477-85x6-552">+254-723-782395</a>
-                            </li>
+                            <li><i class="flaticon-pin"></i> 47 Olewangai Close, Nairobi</li>
+                            <li><i class="flaticon-mail"></i><a href="mailto:info@carweb.cm">info@carweb.cm</a></li>
+                            <li><i class="flaticon-phone"></i><a href="tel:+254723782395">+254 723 782395</a></li>
                         </ul>
                         <div class="social-list clearfix">
                             <ul>
@@ -322,11 +289,28 @@
                             </ul>
                         </div>
                     </div>
-
+                    <!-- Question end -->
                 </div>
             </div>
         </div>
     </div>
 </div>
 <!-- Properties details page end -->
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $(document).ready(function () {
+        // Activate the thumbnail carousel
+        $('#thumbCarousel').carousel({
+            interval: false
+        });
+
+        // Enable the main slider to navigate through thumbnails
+        $('.thumb').click(function () {
+            var slideNumber = $(this).attr('data-slide-to');
+            $('#carDetailsSlider').carousel(parseInt(slideNumber));
+        });
+    });
+</script>
 {% endblock %}
