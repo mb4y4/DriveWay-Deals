@@ -91,8 +91,6 @@ class CKEditorUploadView(View):
         # Handle file upload here and return JSON response as expected by CKEditor
         uploaded_file = request.FILES.get('upload')
         
-        # Example: Save the file and return its URL
-        # Replace this with your actual file handling logic
         if uploaded_file:
             with open('media/uploads/' + uploaded_file.name, 'wb+') as destination:
                 for chunk in uploaded_file.chunks():

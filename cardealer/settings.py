@@ -164,8 +164,9 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
 # Media settings
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
 
 # Messages
 from django.contrib.messages import constants as messages
@@ -200,5 +201,9 @@ CKEDITOR_5_CONFIGS = {
         'toolbar': 'full',
         'height': 300,
         'width': '100%',
+        'config': {
+            'htmlEncodeOutput': False,
+            'entities': False,
+        },
     },
 }
